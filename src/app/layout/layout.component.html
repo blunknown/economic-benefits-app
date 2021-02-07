@@ -1,0 +1,75 @@
+<mat-sidenav-container class="sidenav-container" *ngIf="user$ | async as user">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === false"
+  >
+    <mat-toolbar color="primary" class="text-center">Menu</mat-toolbar>
+    <div class="avatar-container">
+      <img [src]="getAvatarPath(user.roles[0])" alt="Image" class="avatar" />
+    </div>
+    <mat-divider></mat-divider>
+    <mat-nav-list>
+      <a
+        mat-list-item
+        routerLink="/home"
+        *ngIf="
+          user.roles[0] === 'ROLE_TITULAR' ||
+          user.roles[0] === 'ROLE_RECEPTIONIST' ||
+          user.roles[0] === 'ROLE_SECRETARY'
+        "
+        >Inicio</a
+      >
+      <a
+        mat-list-item
+        routerLink="/application"
+        *ngIf="user.roles[0] === 'ROLE_TITULAR'"
+        >Solicitud</a
+      >
+      <a
+        mat-list-item
+        routerLink="/applications"
+        *ngIf="
+          user.roles[0] === 'ROLE_TITULAR' ||
+          user.roles[0] === 'ROLE_RECEPTIONIST' ||
+          user.roles[0] === 'ROLE_SECRETARY'
+        "
+        >Prestaciones</a
+      >
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+      >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span class="mr-auto" fxShow="false" fxShow.xs="true">SPE</span>
+      <span class="mr-auto" fxShow="false" fxShow.gt-xs="true"
+        >Sistema de Prestaciones Económicas</span
+      >
+      <button mat-button [matMenuTriggerFor]="beforeMenu">
+        <mat-icon class="account-icon">account_circle</mat-icon>{{ user.names }}
+      </button>
+      <mat-menu #beforeMenu="matMenu" xPosition="before">
+        <a mat-menu-item routerLink="/account" routerLink="/profile"
+          ><mat-icon>person</mat-icon>Mi cuenta</a
+        >
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>exit_to_app</mat-icon>Cerrar sesión
+        </button>
+      </mat-menu>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

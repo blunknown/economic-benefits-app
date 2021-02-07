@@ -1,0 +1,112 @@
+<h2 mat-dialog-title>Detalles de la solicitud</h2>
+<mat-dialog-content class="mat-typography">
+  <form class="form" [formGroup]="form">
+    <table class="w-100" cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field class="w-100">
+            <mat-label>Nombres del titular</mat-label>
+            <input matInput readonly formControlName="userNames" />
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="w-100">
+            <mat-label>Apellidos del titular</mat-label>
+            <input matInput readonly formControlName="userSurnames" />
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="w-100">
+            <mat-label>DNI del titular</mat-label>
+            <input matInput readonly formControlName="userDni" />
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+    <table class="w-100" cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field class="w-100">
+            <mat-label>Nombres del beneficiario</mat-label>
+            <input matInput readonly formControlName="beneficiaryNames" />
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="w-100">
+            <mat-label>Apellidos del beneficiario</mat-label>
+            <input matInput readonly formControlName="beneficiarySurnames" />
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="w-100">
+            <mat-label>DNI del beneficiario</mat-label>
+            <input matInput readonly formControlName="beneficiaryDni" />
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+    <table class="w-100" cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field class="w-100">
+            <mat-label>Correo electrónico del beneficiario</mat-label>
+            <input matInput readonly formControlName="beneficiaryEmail" />
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="w-100">
+            <mat-label>Numero de celular del beneficiario</mat-label>
+            <input
+              matInput
+              readonly
+              formControlName="beneficiaryMobileNumber"
+            />
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+    <table class="w-100" cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field class="w-100">
+            <mat-label>Tipo de prestamo</mat-label>
+            <input matInput readonly formControlName="applicationTypeName" />
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="w-100">
+            <mat-label>Monto del prestamo (S/.)</mat-label>
+            <input matInput readonly formControlName="amount" />
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+    <table class="w-100" cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field class="w-100">
+            <mat-label>Fecha de solicitud</mat-label>
+            <input matInput readonly formControlName="startDate" />
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="w-100">
+            <mat-label>Fecha de caducidad</mat-label>
+            <input matInput readonly formControlName="endDate" />
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+    <mat-form-field class="w-100">
+      <mat-label>Estado del prestamo</mat-label>
+      <input matInput readonly formControlName="status" />
+    </mat-form-field>
+    <mat-form-field class="w-100">
+      <mat-label>Comentario</mat-label>
+      <textarea matInput readonly formControlName="comment" rows="3"></textarea>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancelar</button>
+</mat-dialog-actions>

@@ -1,0 +1,75 @@
+<h1>Mi cuenta</h1>
+<p>
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus ducimus
+  porro deserunt. Error corporis suscipit distinctio ab hic nihil praesentium
+  earum doloremque consectetur enim officiis, eius, cumque fugiat tempora ex.
+</p>
+<div fxLayout fxLayoutAlign="center" *ngIf="!isLoading">
+  <mat-card fxFlex.xs="100%" fxFlex.gt-xs="75%" fxFlex.gt-sm="50%">
+    <mat-card-content fxLayout="column" fxLayoutGap="16px">
+      <div fxLayout fxLayoutGap="16px">
+        <img [src]="getAvatarPath(user.roles[0])" alt="Image" class="avatar" />
+        <div fxLayout="column" fxLayoutAlign>
+          <h2 mat-card-title>Datos personales</h2>
+          <mat-card-subtitle class="color-accent"
+            >Por el momento, no es posible actualizar sus datos
+            *</mat-card-subtitle
+          >
+        </div>
+      </div>
+      <form [formGroup]="form">
+        <mat-form-field class="w-100" appearance="fill">
+          <mat-label>Nombres</mat-label>
+          <input matInput autocomplete="off" readonly formControlName="names" />
+        </mat-form-field>
+        <mat-form-field class="w-100" appearance="fill">
+          <mat-label>Apellidos</mat-label>
+          <input
+            matInput
+            autocomplete="off"
+            readonly
+            formControlName="surnames"
+          />
+        </mat-form-field>
+        <mat-form-field class="w-100" appearance="fill">
+          <mat-label>DNI</mat-label>
+          <input matInput autocomplete="off" readonly formControlName="dni" />
+        </mat-form-field>
+        <mat-form-field class="w-100" appearance="fill">
+          <mat-label>Número de celular</mat-label>
+          <input
+            matInput
+            autocomplete="off"
+            readonly
+            formControlName="mobileNumber"
+          />
+        </mat-form-field>
+        <mat-form-field class="w-100" appearance="fill">
+          <mat-label>Correo electrónico</mat-label>
+          <input
+            matInput
+            autocomplete="off"
+            readonly
+            formControlName="username"
+          />
+        </mat-form-field>
+        <mat-form-field class="w-100" appearance="fill">
+          <mat-label>Contraseña</mat-label>
+          <input
+            formControlName="password"
+            matInput
+            [type]="hide ? 'password' : 'text'"
+          />
+          <button
+            type="button"
+            mat-icon-button
+            matSuffix
+            (click)="hide = !hide"
+          >
+            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

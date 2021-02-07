@@ -1,0 +1,32 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.content {
+  padding: 16px;
+}
+
+.account-icon {
+  margin-right: 6px;
+}
+
+.avatar-container {
+  text-align: center;
+  margin: 16px 0;
+}
+
+.avatar {
+  vertical-align: middle;
+  width: 65px;
+  border-radius: 50%;
+}

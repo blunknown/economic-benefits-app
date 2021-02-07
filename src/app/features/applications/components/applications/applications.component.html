@@ -1,0 +1,136 @@
+<h1>Prestaciones económicas</h1>
+<p>
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum repellendus
+  placeat architecto corrupti nostrum tenetur labore eum cum, atque sapiente
+  praesentium rerum veritatis perspiciatis laborum cumque natus beatae dolore
+  blanditiis?
+</p>
+<mat-form-field *ngIf="user.roles[0] !== 'ROLE_TITULAR'">
+  <mat-label>Buscar por nombres, apellidos o DNI</mat-label>
+  <input
+    matInput
+    (keyup)="applyFilter($event)"
+    placeholder="Ej. Juan Carlos"
+    autocomplete="off"
+    #input
+  />
+</mat-form-field>
+<div class="mat-elevation-z8">
+  <div class="table-container">
+    <table mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="userNames">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombres</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.userNames }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="userSurnames">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Apellidos</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.userSurnames }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="userDni">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>DNI</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.userDni }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="applicationTypeName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Tipo de solicitud
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.applicationTypeName }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="startDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Fecha de solicitud
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.startDate }}</td>
+      </ng-container>
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Estado de solicitud
+        </th>
+        <!-- <td mat-cell *matCellDef="let element">{{ element.status }}</td> -->
+        <td mat-cell *matCellDef="let element">
+          <span *ngIf="element.status === 'Solicitado'" class="orange">{{
+            element.status
+          }}</span>
+          <span *ngIf="element.status === 'Derivado'" class="yellow">{{
+            element.status
+          }}</span>
+          <span *ngIf="element.status === 'Aprobado'" class="green">{{
+            element.status
+          }}</span>
+          <span *ngIf="element.status === 'Rechazado'" class="red">{{
+            element.status
+          }}</span>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td mat-cell *matCellDef="let element">
+          <button
+            mat-icon-button
+            color="primary"
+            (click)="openDetails(element)"
+          >
+            <mat-icon>description</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            color="accent"
+            *ngIf="user.roles[0] !== 'ROLE_TITULAR'"
+            (click)="openUpdate(element)"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+          <!-- <button
+            mat-mini-fab
+            color="primary"
+            class="mr-icon"
+            (click)="openDetails(element)"
+          >
+            <mat-icon>description</mat-icon>
+          </button> -->
+          <!-- <button
+            mat-mini-fab
+            color="accent"
+            (click)="
+              user.roles[0] === 'ROLE_SECRETARY'
+                ? openStatus(element)
+                : openConfirmation(element)
+            "
+          >
+            <mat-icon>check_circle</mat-icon>
+          </button> -->
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="loading">
+        <tr class="mat-row">
+          <td class="mat-cell" *matFooterCellDef colspan="7">
+            Cargando datos...
+          </td>
+        </tr>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      <tr
+        mat-footer-row
+        *matFooterRowDef="['loading']"
+        [ngClass]="{ hide: dataSource != null }"
+      ></tr>
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="7">No hay datos disponibles</td>
+      </tr>
+    </table>
+  </div>
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+    [pageSize]="5"
+  ></mat-paginator>
+</div>

@@ -1,0 +1,22 @@
+<ng-container *ngIf="user$ | async as user">
+  <h2 mat-dialog-title>Declaración jurada</h2>
+  <mat-dialog-content class="mat-typography content">
+    <div class="text-center">
+      <img src="assets/img/essalud.jpg" alt="" />
+    </div>
+    <div>
+      Yo, <strong>{{ user.names }} {{ user.surnames }}</strong> de nacionalidad
+      peruana; con documento nacional de identidad Nº
+      <strong>{{ user.dni }}</strong> ; declaro bajo juramento que: - No cuento
+      con obligaciones contractuales y/o tributarias incumplidas con el Estado.
+      - No he sido sentenciado penalmente ni he dejado de cumplir pena alguna. -
+      Estoy de acuerdo con la información consignada en el formulario de
+      inscripción para participar en el stand La Independiente FIL Lima – 2020 y
+      la convocatoria. Me afirmo y ratifico en lo expresado, en señal de lo cual
+      firmo la presente declaración jurada. Lima, 2020.
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancelar</button>
+  </mat-dialog-actions>
+</ng-container>

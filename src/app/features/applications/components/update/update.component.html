@@ -1,0 +1,35 @@
+<ng-container *ngIf="user$ | async as user">
+  <h2 mat-dialog-title>Evaluación de solicitud</h2>
+  <form [formGroup]="form" (ngSubmit)="updateApplication($event)">
+    <div mat-dialog-content class="content">
+      <label>Seleccione una acción</label>
+      <mat-radio-group class="example-radio-group" formControlName="status">
+        <mat-radio-button
+          *ngIf="user.roles[0] === 'ROLE_RECEPTIONIST'"
+          class="example-radio-button"
+          value="Derivado"
+        >
+          Derivar
+        </mat-radio-button>
+        <mat-radio-button
+          *ngIf="user.roles[0] === 'ROLE_SECRETARY'"
+          class="example-radio-button"
+          value="Aprobado"
+        >
+          Aprobar
+        </mat-radio-button>
+        <mat-radio-button class="example-radio-button" value="Rechazado">
+          Rechazar
+        </mat-radio-button>
+      </mat-radio-group>
+      <mat-form-field class="w-100" appearance="fill">
+        <mat-label>Comentario</mat-label>
+        <textarea matInput formControlName="comment" rows="3"></textarea>
+      </mat-form-field>
+    </div>
+    <div mat-dialog-actions align="end">
+      <button type="submit" mat-button [disabled]="isLoading">Registrar</button>
+      <button mat-button mat-dialog-close>Cancelar</button>
+    </div>
+  </form>
+</ng-container>

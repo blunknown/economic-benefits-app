@@ -1,0 +1,20 @@
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+  display: none;
+}
+
+input.example-right-align {
+  -moz-appearance: textfield;
+}
+
+.example-right-align {
+  text-align: right;
+}
+
+.error-message {
+  padding-bottom: 1.34375em !important;
+}
+
+.statement {
+  display: flex;
+}

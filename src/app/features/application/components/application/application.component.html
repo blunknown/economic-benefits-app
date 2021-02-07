@@ -1,0 +1,113 @@
+<h1>Solicitud de prestación económica</h1>
+<p>
+  Lorem ipsum dolor sit amet consectetur, adipisicing elit. A, ad deserunt, vero
+  sunt amet dignissimos ipsum officiis ex inventore rerum dolorum quos molestias
+  deleniti corrupti, nostrum ea adipisci error rem!
+</p>
+
+<div fxLayout fxLayoutAlign="center">
+  <mat-card fxFlex.xs="100%" fxFlex.gt-xs="75%" fxFlex.gt-sm="50%">
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="sendRequest($event)">
+        <h2 mat-card-title>Datos del beneficiario</h2>
+        <mat-card-subtitle class="color-accent"
+          >Complete la sección solo si existe un beneficiario
+          *</mat-card-subtitle
+        >
+        <mat-form-field class="w-100" appearance="fill">
+          <mat-label>Nombres</mat-label>
+          <input
+            matInput
+            autocomplete="off"
+            formControlName="beneficiaryNames"
+          />
+        </mat-form-field>
+        <mat-form-field class="w-100" appearance="fill">
+          <mat-label>Apellidos</mat-label>
+          <input
+            matInput
+            autocomplete="off"
+            formControlName="beneficiarySurnames"
+          />
+        </mat-form-field>
+        <mat-form-field class="w-100" appearance="fill">
+          <mat-label>DNI</mat-label>
+          <input matInput autocomplete="off" formControlName="beneficiaryDni" />
+        </mat-form-field>
+        <mat-form-field class="w-100" appearance="fill">
+          <mat-label>Correo electrónico</mat-label>
+          <input
+            matInput
+            autocomplete="off"
+            formControlName="beneficiaryEmail"
+          />
+          <mat-error *ngIf="beneficiaryEmail.invalid"
+            >Correo electrónico inválido</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field class="w-100" appearance="fill">
+          <mat-label>Número de celular</mat-label>
+          <span matPrefix>+51 &nbsp;</span>
+          <input
+            type="tel"
+            matInput
+            formControlName="beneficiaryMobileNumber"
+          />
+          <mat-icon matSuffix>local_phone</mat-icon>
+        </mat-form-field>
+        <h2 mat-card-title>Datos del prestamo</h2>
+        <mat-card-subtitle class="color-accent"
+          >Completar obligatoriamente *</mat-card-subtitle
+        >
+        <mat-form-field class="w-100" appearance="fill" f>
+          <mat-label>Tipo de solicitud</mat-label>
+          <mat-select formControlName="applicationTypeId">
+            <mat-option
+              *ngFor="let applicationType of applicationTypes"
+              [value]="applicationType.id"
+            >
+              {{ applicationType.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="w-100" appearance="fill">
+          <mat-label>Monto</mat-label>
+          <input
+            matInput
+            type="number"
+            class="example-right-align"
+            autocomplete="off"
+            formControlName="amount"
+          />
+          <span matPrefix>S/. &nbsp;</span>
+          <span matSuffix>.00</span>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="w-100">
+          <mat-label>Fecha de caducidad</mat-label>
+          <input matInput [matDatepicker]="dp1" formControlName="endDate" />
+          <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+          <mat-datepicker touchUi #dp1></mat-datepicker>
+        </mat-form-field>
+        <h2 mat-card-title>Declaración jurada</h2>
+        <button
+          mat-button
+          color="accent"
+          (click)="openStatement()"
+          type="button"
+        >
+          Visualizar la declaración jurada
+        </button>
+        <section class="example-section">
+          <mat-checkbox class="example-margin" formControlName="statement"
+            >Aceptar la declaración jurada</mat-checkbox
+          >
+        </section>
+        <div class="text-right">
+          <button mat-flat-button color="primary" [disabled]="!form.valid">
+            Realizar solicitud
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
